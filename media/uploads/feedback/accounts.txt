@@ -1,0 +1,13 @@
+qa.jiva1@outlook.com --> Apple@1234
+qa.jiva2@outlook.com --> Apple@1234
+qa.jiva3@gmail.com --> Apple@1234
+qa.jiva4@gmail.com --> Apple@1234
+qa.jiva5@gmail.com --> Apple@1234
+qa.jiva6@gmail.com --> Apple@1234
+qa.jiva7@gmail.com --> Apple@1234
+qa.jiva8@outlook.com --> Apple@1234
+qa.jiva9@outlook.com --> Apple@1234
+qa.jiva10@outlook.com --> Apple@1234
+qa.jiva11@outlook.com --> Apple@1234
+qa.jiva12@outlook.com --> Apple@1234
+qa.jiva13@outlook.com --> Apple@1234

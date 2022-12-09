@@ -1,0 +1,338 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style>
+        .bg {
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            background-image: url(http://i.imgur.com/w16HASj.png);
+            background-size: 100% 100%;
+            background-position: top center;
+        }
+    </style>
+    <style>
+        /* Dropdown Button */
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+    <title>Search a Status</title>
+
+</head>
+
+<body>
+
+
+    <!-- ################################################################ -->
+ 
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2">{{user.username}}</span>
+              </div>
+              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'home' %}">
+              <span class="menu-title" style="color: black;">Dashboard</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+
+
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false"
+              aria-controls="ui-basic1">
+              <span class="menu-title" style="color: black;">Trainers</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic1">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'add_trainer' %}" style="color: black;">Add a new
+                                        trainer</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'trainer_attachment' %}" style="color: black;">Add
+                                        Attachment or Feedback</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'edit__trainer' %}" style="color: black;">Edit
+                                        trainer</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'update_attachment' %}" style="color: black;">Update
+                                        Attachments</a></li>
+                        
+                            </ul>
+                        </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+              aria-controls="ui-basic2">
+              <span class="menu-title" style="color: black;">Add Learning Partner</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'add_lerning_path' %}" style="color: black;">Add Learning Partner</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic3" aria-expanded="false"
+              aria-controls="ui-basic3">
+              <span class="menu-title" style="color: black;">Leads</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-chart-bar menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic3">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'add_Lead' %}" style="color: black;">Add New Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'leads' %}" style="color: black;">Edit/View</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+          <li class="nav-item active">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic4" aria-expanded="false"
+              aria-controls="ui-basic4">
+              <span class="menu-title" style="color: black;">Reports</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic4">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'trainers_for_schedule_date' %}" style="color: black;">Trainers for
+                    schedule date</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'status_reports' %}" style="color: black;">Status Reports</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registration_page' %}">
+              <span class="menu-title" style="color: black;">Registration Page</span>
+              <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <span class="menu-title" style="color: black;">logout</span>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+
+    <div class="bg">
+
+
+        <center>
+
+            {% if lead_status %}
+            <h1 style="color: rgb(0, 0, 0);">You Search for {{ lead_status }}</h1>
+
+            {% for x in trainers_info %}
+            <a href="{% url 'report_trainer' x.id %}"><b>
+                    <h2 style="color: white;">{{ x.assign_to_trainer }}</h2>
+                </b></a>
+            {% endfor %}
+
+
+            <h1 style="color: rgb(0, 0, 0);">That are not in {{ lead_status }}</h1>
+            {% for x in trainer_info_not_active %}
+            <a href="{% url 'report_trainer' x.id %}"><b>
+                    <h2 style="color: white;">{{ x.assign_to_trainer }}</h2>
+                </b></a>
+            {% endfor %}
+            {% else %}
+
+            {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+        </center>
+
+
+        {% if infor %}
+
+
+        <h1 class="text-center" style="color:white;">Trainer inforrmation</h1>
+        <div class="container">
+            <table class="table table-dark">
+
+                <thead>
+
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">Id</th>
+                        <td>{{ infor.id }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">handel_by</th>
+                        <td>{{ infor.handel_by }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">learning_partner</th>
+                        <td>{{ infor.learning_partner }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">assign_to_trainer</th>
+                        <td>{{ infor.assign_to_trainer }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">course_name</th>
+                        <td>{{ infor.course_name }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">getting_lead_date</th>
+                        <td>{{ infor.getting_lead_date }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">start_date</th>
+                        <td>{{ infor.start_date }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">end_date</th>
+                        <td>{{ infor.end_date }}</td>
+                    </tr>
+                </thead>
+                <thead>
+                    <tr>
+                        <th scope="col" style="font-weight: bold;
+                                            color: black;">lead_status</th>
+                        <td>{{ infor.lead_status }}</td>
+                    </tr>
+                </thead>
+
+
+
+            </table>
+        </div>
+        {% endif %}
+
+
+
+
+
+        <a class="float-right" href="{% url 'home' %}">
+            <img src="{% static 'img/download.png' %}" class="width:10px" alt="" width="50" height="60"> </a>
+
+    </div>
+</body>
+
+</html>

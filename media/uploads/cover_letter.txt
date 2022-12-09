@@ -1,0 +1,25 @@
+Hello,
+
+I'm a full-stack developer with 1+ years of experience in developing and deploying web applications.
+
+I am passionate about learning new things and taking on challenges. I have worked on multiple projects in different industries and have decent experience in problem-solving and providing efficient solutions.
+
+I am a web application developer, hard-working and always deliver the work on time.
+I have designed many web applications, basically I use MEAN stack for web application development 
+
+I only take the project which I am sure I can do it within time-frame and budget. 
+
+My strong areas of work include : 
+
+1) Frontend development (Angular, Ionic framework).
+2) Backend development (Django, Nodejs framework).
+3) Database (Postgres, mongodb, sql).
+4) Deployment on cloud services (AWS, GCP).
+5) REST Api development.
+6) Python
+
+
+
+
+Thanks,
+Sharandeep Singh

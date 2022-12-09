@@ -1,0 +1,509 @@
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Home</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <!-- End layout styles -->
+  <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+  <!-- Bootstrap + LeadMark main styles -->
+  <link rel="stylesheet" href="{% static 'css/leadmark.css' %}">
+  <style type="text/css">
+    /* Chart.js */
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: .99
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .chartjs-render-monitor {
+      animation: chartjs-render-animation 1ms
+    }
+
+    .chartjs-size-monitor,
+    .chartjs-size-monitor-expand,
+    .chartjs-size-monitor-shrink {
+      position: absolute;
+      direction: ltr;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      visibility: hidden;
+      z-index: -1
+    }
+
+    .chartjs-size-monitor-expand>div {
+      position: absolute;
+      width: 1000000px;
+      height: 1000000px;
+      left: 0;
+      top: 0
+    }
+
+    .chartjs-size-monitor-shrink>div {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      left: 0;
+      top: 0
+    }
+  </style>
+  <style type="text/css">
+    /* Chart.js */
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: .99
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .chartjs-render-monitor {
+      animation: chartjs-render-animation 1ms
+    }
+
+    .chartjs-size-monitor,
+    .chartjs-size-monitor-expand,
+    .chartjs-size-monitor-shrink {
+      position: absolute;
+      direction: ltr;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      visibility: hidden;
+      z-index: -1
+    }
+
+    .chartjs-size-monitor-expand>div {
+      position: absolute;
+      width: 1000000px;
+      height: 1000000px;
+      left: 0;
+      top: 0
+    }
+
+    .chartjs-size-monitor-shrink>div {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      left: 0;
+      top: 0
+    }
+  </style>
+  <style type="text/css">
+    /* Chart.js */
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: .99
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .chartjs-render-monitor {
+      animation: chartjs-render-animation 1ms
+    }
+
+    .chartjs-size-monitor,
+    .chartjs-size-monitor-expand,
+    .chartjs-size-monitor-shrink {
+      position: absolute;
+      direction: ltr;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      visibility: hidden;
+      z-index: -1
+    }
+
+    .chartjs-size-monitor-expand>div {
+      position: absolute;
+      width: 1000000px;
+      height: 1000000px;
+      left: 0;
+      top: 0
+    }
+
+    .chartjs-size-monitor-shrink>div {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      left: 0;
+      top: 0
+    }
+  </style>
+
+  
+</head>
+
+<body>
+  <div class="container-scroller">
+
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="{% url 'home' %}"><img src="{% static 'assets/images/logo.png' %}" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" href="{% url 'home' %}"><img src="{% static 'assets/images/logo-mini.svg' %}" alt="logo"></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-stretch">
+
+        <div class="search-field d-none d-md-block">
+            <div class="input-group">
+              <div class="input-group-prepend bg-transparent">
+                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+              </div>
+              <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'search_a_trainer' %}">
+                {% csrf_token %}
+              <input name="searched" id="name" type="text" class="form-control bg-transparent border-0"
+                placeholder="Search a Trainer">
+
+              <button class="btn my-2 my-sm-0 ml-4 rounded" style="color: rgb(255, 255, 255); background-color: #5465f6;" type="Search">Search a trainer</button>
+            </form>
+            </div>
+         
+        </div>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item d-none d-lg-block full-screen-link">
+            <a class="nav-link">
+              <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+            </a>
+          </li>
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+              aria-expanded="false">
+
+              <div class="nav-profile-text">
+                <p class="mb-1 text-black">{{user.username}}</p>
+              </div>
+            </a>
+            <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+              <div class="dropdown-divider"></div>
+              <a class="nav-link" href="{% url 'logout' %}">
+                <span class="menu-title">Signout</span>
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              </a>
+            </div>
+          </li>
+
+
+
+
+
+        </ul>
+
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2">{{user.username}}</span>
+              </div>
+              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">
+              <span class="menu-title" style="color: black;">Dashboard</span>
+              <i class="mdi mdi-home menu-icon"></i>
+            </a>
+
+
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic1" aria-expanded="false"
+              aria-controls="ui-basic1">
+              <span class="menu-title" style="color: black;">Trainers</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic1">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'add_trainer' %}" style="color: black;">Add a new
+                                        trainer</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'trainer_attachment' %}" style="color: black;">Add
+                                        Attachment or Feedback</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'edit__trainer' %}" style="color: black;">Edit
+                                        trainer</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'update_attachment' %}" style="color: black;">Update
+                                        Attachments</a></li>
+                        
+                            </ul>
+                        </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic2" aria-expanded="false"
+              aria-controls="ui-basic2">
+              <span class="menu-title" style="color: black;">Add Learning Partner</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic2">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'add_lerning_path' %}" style="color: black;">Add Learning Partner</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item active">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic3" aria-expanded="false"
+              aria-controls="ui-basic3">
+              <span class="menu-title" style="color: black;">Leads</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-chart-bar menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic3">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'add_Lead' %}" style="color: black;">Add New Lead</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'leads' %}" style="color: black;">Edit/View</a></li>
+              </ul>
+            </div>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic4" aria-expanded="false"
+              aria-controls="ui-basic4">
+              <span class="menu-title" style="color: black;">Reports</span>
+              <i class="menu-arrow"></i>
+              <i class="mdi mdi-table-large menu-icon"></i>
+            </a>
+
+
+            <div class="collapse" id="ui-basic4">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'trainers_for_schedule_date' %}" style="color: black;">Trainers for
+                    schedule date</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'status_reports' %}" style="color: black;">Status Reports</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'registration_page' %}">
+              <span class="menu-title" style="color: black;">Registration Page</span>
+              <i class="mdi mdi-contacts menu-icon"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <span class="menu-title" style="color: black;">logout</span>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="page-header" style="align-items:center;">
+            <h3 class="page-title">
+              <span class="page-title-icon text-white me-2" style="
+    background-color: #7684f8;
+">
+                <i class="mdi mdi-chart-bar"></i>
+              </span> Edit Lead
+            </h3>
+
+          </div>
+          <div class="row">
+
+                        <!-- End Of Second Navigation -->
+
+                        <div style="box-shadow: 6px 9px 12px 2px grey; margin-right:20%; text-align: center; "
+                        class="card card-img-holder text-white">
+<br>
+<p style="color: rgb(255, 255, 255); background-color: #5465f6;"><b> Edit Leads </b></p><br>
+        <form action="" onsubmit="alert('Lead Updated Successfully');" method="post">{% csrf_token %}
+
+
+
+            <div class="form-group row">
+                <label for="handel_by" class="col-sm-3 col-form-label" style="color:black;"><b> Lead handle by :- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                
+                    <input type="text" name="handel_by" style="width: 518px; text-align: center;" id="handel_by" value="{{ leads.handel_by_id }}" />
+
+                    <select name="handel_by" style="width: 168px;" id="handel_by" class="btn btn-success bg-dark">
+                      <option value="{{ leads.handel_by_id }}">{{ leads.handel_by_id }}</option> 
+                      {% for y in users %}
+                        <option value="{{ y.id }}">{{ y.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="learning_partner" class="col-sm-3 col-form-label" style="color:black;"><b> Add Learning
+                    Partner:- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <input type="text" name="learning_partner" style="width: 518px; text-align: center;" id="learning_partner"
+                        value="{{ leads.learning_partner_id }}" />
+
+                    <select name="learning_partner" style="    width: 168px;" id="learning_partner" class="btn btn-success bg-dark">
+                      <option value="{{ leads.learning_partner_id }}">{{ leads.learning_partner_id }}</option>
+                  
+                        {% for y in partner %}
+
+
+                        <option value="{{ y.id }}">{{ y.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="assign_to_trainer" class="col-sm-3 col-form-label" style="color:black;"><b> Assign to trainer
+                    :-</b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <input type="text" name="assign_to_trainer" style="width: 518px; text-align: center;" id="assign_to_trainer"
+                    value="{{ leads.assign_to_trainer_id }}" />
+
+                <select name="assign_to_trainer" style="width: 168px;" id="assign_to_trainer" class="btn btn-success bg-dark">
+                  <option value="{{ leads.assign_to_trainer_id }}">{{ leads.assign_to_trainer_id }}</option>
+                
+                    {% for y in trainer_info %}
+                    <option value="{{ y.trainer_id }}">{{ y.trainer_name }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="course_name" class="col-sm-3 col-form-label" style="color:black;"><b> Course Name :-</b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <input type="text" name="course_name"  class="form-control" id="course_name" value="{{ leads.course_name }}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lead_type" class="col-sm-3 col-form-label" style="color:black;"><b> Lead Type :- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <input type="text" name="lead_type" class="form-control" id="lead_type" value="{{ leads.lead_type }}" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="getting_lead_date" class="col-sm-3 col-form-label" style="color:black;"><b> Getting Lead Date
+                    :- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <h3 style="color:rgb(0, 0, 0);">{{ leads.getting_lead_date }}</h3><br>
+
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="getting_lead_date" class="col-sm-3 col-form-label" style="color:black;"><b> Start Date :- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <h3 style="color:rgb(0, 0, 0);">{{ leads.start_date }}</h3>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="end_date" class="col-sm-3 col-form-label" style="color:black;"><b> End Date :- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9"> 
+                    <h3 style="color:rgb(0, 0, 0);">{{ leads.end_date }}</h3>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lead_status" class="col-sm-3 col-form-label" style="color:black;"><b> Lead Status :- </b><i style="color: red;"><b>*</b></i></label>
+                <div class="col-sm-9">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <input type="text" name="lead_status" style="width: 518px; text-align: center;" id="lead_status" value="{{ leads.lead_status }}" />
+
+                            <!-- <div style="margin-left:170px ;"> -->
+                            <br>
+                            <input type="checkbox" name="lead_status" id="lead_status" value="Initial" /><b
+                                style="color:rgb(0, 0, 0);">Initial</b><br>
+                            <input type="checkbox" id="lead_status" name="lead_status" value="In Progress" /><b
+                                style="color:rgb(0, 0, 0);">In Progress</b><br>
+                            <input type="checkbox" name="lead_status" id="lead_status" value="Follow Up" /><b
+                                style="color:rgb(0, 0, 0);">Follow Up</b><br>
+                            <input type="checkbox" id="lead_status" name="lead_status" value="Cancelled" /><b
+                                style="color:rgb(0, 0, 0);">Cancelled</b><br>
+                            <input type="checkbox" name="lead_status" id="lead_status" value="Confirmed" /><b
+                                style="color:rgb(0, 0, 0);">Confirmed</b><br>
+                            <input type="checkbox" id="lead_status" name="lead_status" value="PO Receiveds" /><b
+                                style="color:rgb(0, 0, 0);">PO Received</b><br>
+                          
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="lead_description" class="col-sm-3 col-form-label" style="color:black;"><b> Lead Description :-</b></label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="lead_description" id="lead_description" value="{{ leads.lead_description }}" /><br><br>
+                </div>
+            </div>
+
+            <button style="font-size:20px;color: white;background-color: #5465f6;border-radius: 22px;" id="submit" class="btn"><i class="ti-thumb-up pr-1">Confirm Edit</i></button>
+
+        </form>
+        <!-- ################################################################################################################################################ -->
+          
+
+
+
+
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.cookie.js' %}" type="text/javascript"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+    <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'assets/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+    <script src="{% static 'assets/js/todolist.js' %}"></script>
+    <!-- End custom js for this page -->
+    
+</body>
+
+</html>

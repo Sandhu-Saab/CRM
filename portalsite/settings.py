@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-wq^lch6#%3*lqvfc3l=%j(^i^aki2skb^+u+5_j8lp&hj-z7!5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '20.106.48.191', 'crm.centralus.cloudapp.azure.com']
 
 
 # Application definition
@@ -82,12 +82,25 @@ WSGI_APPLICATION = 'portalsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'crm',
+        'USER': 'crm',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -132,6 +145,7 @@ USE_TZ = True
 # TEMPLATE_DEBUG =True
 
 STATIC_URL= "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT= os.path.join(BASE_DIR, "media/uploads/")
 MEDIA_URL="/uploads/"
 TEMPLATE_DEBUG =True
